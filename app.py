@@ -13,7 +13,7 @@ app = Flask(__name__)
 AGROMONITORING_API_KEY = os.getenv("AGROMONITORING_API_KEY", "fb0edf9a5875fa197a8299d2501e1fba")
 
 # Define model paths
-OUTBREAK_MODEL_PATH = Path(__file__).parent / "model_sprade" / "outbreak_risk_model.pkl"
+OUTBREAK_MODEL_PATH = Path(__file__).parent / "model_spread_detection" / "outbreak_risk_model.pkl"
 
 # LOAD MODEL
 models = {
