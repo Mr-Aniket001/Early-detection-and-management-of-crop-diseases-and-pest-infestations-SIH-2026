@@ -17,9 +17,9 @@ OUTBREAK_MODEL_PATH = Path(__file__).parent / "model_sprade" / "outbreak_risk_mo
 
 # LOAD MODEL
 models = {
-    "cotton": keras.models.load_model(r"C:\Desktop\Crop_Frontend\Crop_Frontend\model conection\model\cotton_cnn3_final2.keras"),
-    "rice": keras.models.load_model(r"C:\Desktop\Crop_Frontend\Crop_Frontend\model conection\model\rice_cnn_final.keras"),
-    "sugarcane": keras.models.load_model(r"C:\Desktop\Crop_Frontend\Crop_Frontend\model conection\model\sugarcane_cnn_final.keras")
+    "cotton": keras.models.load_model(r"C:\Desktop\Crop_Frontend\Early-detection-and-management-of-crop-diseases-and-pest-infestations-SIH-2026\model\cotton_cnn3.keras"),
+    "rice": keras.models.load_model(r"C:\Desktop\Crop_Frontend\Early-detection-and-management-of-crop-diseases-and-pest-infestations-SIH-2026\model\rice_cnn.keras"),
+    "sugarcane": keras.models.load_model(r"C:\Desktop\Crop_Frontend\Early-detection-and-management-of-crop-diseases-and-pest-infestations-SIH-2026\model\sugarcane_cnn_final.keras")
 }
 
 class_names = {
