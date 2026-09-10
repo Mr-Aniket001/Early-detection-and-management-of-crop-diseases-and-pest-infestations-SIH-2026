@@ -1,0 +1,1241 @@
+/* =========================================================
+   CROPGUARD AI
+   HOME PAGE CSS
+========================================================= */
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html {
+
+    scroll-behavior: smooth;
+
+}
+
+/* Hide the Google Translate iframe/banner space */
+.goog-te-banner-frame, 
+.skiptranslate, 
+iframe.goog-te-banner-frame {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+    border: none !important;
+}
+
+
+body {
+    top: 0px !important;
+    position: static !important;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #06120a;
+
+    color: white;
+
+    overflow-x: hidden;
+
+}
+
+
+/* Remove default link styling */
+
+a {
+
+    text-decoration: none;
+
+    color: inherit;
+
+}
+
+
+/* =========================================================
+   NAVIGATION BAR
+========================================================= */
+
+.navbar {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 80px;
+
+    padding:
+        0 6%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    z-index: 1000;
+
+    background:
+        rgba(4, 18, 9, 0.45);
+
+    backdrop-filter:
+        blur(12px);
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,0.08);
+
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.logo {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.logo-icon {
+
+    width: 43px;
+
+    height: 43px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        rgba(121,217,138,0.12);
+
+    border:
+        1px solid
+        rgba(121,217,138,0.25);
+
+    border-radius: 10px;
+
+    font-size: 21px;
+
+}
+
+
+.logo-text h2 {
+
+    font-size: 19px;
+
+    letter-spacing: -0.5px;
+
+}
+
+
+.logo-text h2 span {
+
+    color: #79d98a;
+
+}
+
+
+.logo-text small {
+
+    display: block;
+
+    margin-top: 3px;
+
+    color: #91a097;
+
+    font-size: 8px;
+
+    letter-spacing: 1.8px;
+
+}
+
+
+/* =========================================================
+   NAVIGATION LINKS
+========================================================= */
+
+nav {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 35px;
+
+}
+
+
+nav a {
+
+    position: relative;
+
+    color: #b9c4bc;
+
+    font-size: 12px;
+
+    transition:
+        0.3s ease;
+
+}
+
+
+nav a:hover {
+
+    color: white;
+
+}
+
+
+/* Active navigation link */
+
+nav a.active {
+
+    color: white;
+
+}
+
+
+/* Green line below active link */
+
+nav a.active::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    bottom: -9px;
+
+    width: 100%;
+
+    height: 2px;
+
+    background: #79d98a;
+
+}
+
+
+/* =========================================================
+   LOGIN BUTTON
+========================================================= */
+
+.login-btn {
+
+    padding:
+        10px 19px;
+
+    border:
+        1px solid
+        rgba(121,217,138,0.45);
+
+    border-radius: 7px;
+
+    color: #bcecc5;
+
+    font-size: 11px;
+
+    transition:
+        0.3s ease;
+
+}
+
+
+.login-btn:hover {
+
+    background:
+        rgba(121,217,138,0.12);
+
+    border-color:
+        #79d98a;
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+   HERO SECTION
+========================================================= */
+
+.hero {
+
+    position: relative;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    padding:
+        120px 8% 70px;
+
+    background-image:
+
+        url("../images/farm-bg.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+
+}
+
+
+/* =========================================================
+   HERO DARK OVERLAY
+========================================================= */
+
+.hero-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(2, 15, 7, 0.90),
+            rgba(2, 15, 7, 0.58),
+            rgba(2, 15, 7, 0.45)
+        );
+
+}
+
+
+/* =========================================================
+   HERO CONTENT
+========================================================= */
+
+.hero-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 760px;
+
+}
+
+
+.hero-label {
+
+    display: inline-block;
+
+    margin-bottom: 22px;
+
+    color: #82dc91;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+    letter-spacing: 2.5px;
+
+}
+
+
+.hero h1 {
+
+    font-size:
+        clamp(
+            48px,
+            6vw,
+            82px
+        );
+
+    line-height: 1.03;
+
+    letter-spacing: -3px;
+
+    font-weight: 700;
+
+}
+
+
+.hero h1 span {
+
+    color: #79d98a;
+
+}
+
+
+/* =========================================================
+   HERO DESCRIPTION
+========================================================= */
+
+.hero-description {
+
+    max-width: 650px;
+
+    margin-top: 27px;
+
+    color: #c1cbc4;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+}
+
+
+/* =========================================================
+   HERO BUTTONS
+========================================================= */
+
+.hero-buttons {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 35px;
+
+}
+
+
+/* Primary button */
+
+.primary-btn {
+
+    min-width: 155px;
+
+    padding:
+        14px 20px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 25px;
+
+    background: #79d98a;
+
+    color: #06120a;
+
+    border-radius: 7px;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+    transition:
+        0.3s ease;
+
+}
+
+
+.primary-btn span {
+
+    font-size: 17px;
+
+}
+
+
+.primary-btn:hover {
+
+    transform:
+        translateY(-3px);
+
+    background: #96e7a2;
+
+    box-shadow:
+        0 12px 30px
+        rgba(121,217,138,0.20);
+
+}
+
+
+/* Secondary button */
+
+.secondary-btn {
+
+    padding:
+        13px 20px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.25);
+
+    border-radius: 7px;
+
+    color: #d1d9d3;
+
+    font-size: 11px;
+
+    transition:
+        0.3s ease;
+
+}
+
+
+.secondary-btn:hover {
+
+    background:
+        rgba(255,255,255,0.08);
+
+    border-color:
+        rgba(255,255,255,0.40);
+
+}
+
+
+/* =========================================================
+   HERO QUOTE
+========================================================= */
+
+.hero-quote {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 13px;
+
+    margin-top: 50px;
+
+}
+
+
+.quote-line {
+
+    width: 2px;
+
+    height: 38px;
+
+    background: #79d98a;
+
+}
+
+
+.hero-quote p {
+
+    color: #aab7ae;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    font-style: italic;
+
+}
+
+
+/* =========================================================
+   SCROLL INDICATOR
+========================================================= */
+
+.scroll-indicator {
+
+    position: absolute;
+
+    bottom: 30px;
+
+    right: 7%;
+
+    z-index: 5;
+
+    color: #8e9b91;
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    text-align: center;
+
+}
+
+
+.scroll-indicator div {
+
+    margin-top: 8px;
+
+    font-size: 17px;
+
+    color: #79d98a;
+
+}
+
+
+/* =========================================================
+   ABOUT SECTION
+========================================================= */
+
+.about-section {
+
+    padding:
+        110px 8%;
+
+    background:
+        #07160b;
+
+    text-align: center;
+
+}
+
+
+.section-label {
+
+    color: #79d98a;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    font-weight: bold;
+
+}
+
+
+.about-section h2 {
+
+    margin-top: 18px;
+
+    font-size:
+        clamp(
+            38px,
+            5vw,
+            62px
+        );
+
+    line-height: 1.08;
+
+    letter-spacing: -2px;
+
+}
+
+
+.about-section h2 span {
+
+    color: #79d98a;
+
+}
+
+
+.about-description {
+
+    max-width: 720px;
+
+    margin:
+        25px auto 0;
+
+    color: #9ca9a0;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+}
+
+
+/* =========================================================
+   QUOTE GRID
+========================================================= */
+
+.quote-grid {
+
+    max-width: 1100px;
+
+    margin:
+        55px auto 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 20px;
+
+}
+
+
+/* =========================================================
+   QUOTE CARD
+========================================================= */
+
+.quote-card {
+
+    min-height: 220px;
+
+    padding: 30px 25px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background:
+        rgba(255,255,255,0.035);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    border-radius: 12px;
+
+    transition:
+        0.3s ease;
+
+}
+
+
+.quote-card:hover {
+
+    transform:
+        translateY(-7px);
+
+    border-color:
+        rgba(121,217,138,0.30);
+
+}
+
+
+.quote-icon {
+
+    margin-bottom: 15px;
+
+    font-size: 25px;
+
+    color: #79d98a;
+
+}
+
+
+.quote-card p {
+
+    max-width: 270px;
+
+    color: #c4cec7;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    font-style: italic;
+
+}
+
+
+.quote-card span {
+
+    margin-top: 18px;
+
+    color: #718078;
+
+    font-size: 10px;
+
+}
+
+
+/* =========================================================
+   FEATURES SECTION
+========================================================= */
+
+.features-section {
+
+    padding:
+        110px 8%;
+
+    background:
+        #06120a;
+
+    text-align: center;
+
+}
+
+
+.features-section h2 {
+
+    margin-top: 18px;
+
+    font-size:
+        clamp(
+            38px,
+            5vw,
+            62px
+        );
+
+    letter-spacing: -2px;
+
+}
+
+
+.features-section h2 span {
+
+    color: #79d98a;
+
+}
+
+
+/* =========================================================
+   FEATURE GRID
+========================================================= */
+
+.feature-grid {
+
+    max-width: 1100px;
+
+    margin:
+        55px auto 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 18px;
+
+}
+
+
+/* =========================================================
+   FEATURE CARD
+========================================================= */
+
+.feature-card {
+
+    min-height: 230px;
+
+    padding: 30px 20px;
+
+    background:
+        rgba(255,255,255,0.035);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    border-radius: 12px;
+
+    transition:
+        0.3s ease;
+
+}
+
+
+.feature-card:hover {
+
+    transform:
+        translateY(-7px);
+
+    border-color:
+        rgba(121,217,138,0.30);
+
+}
+
+
+.feature-icon {
+
+    font-size: 32px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.feature-card h3 {
+
+    font-size: 15px;
+
+}
+
+
+.feature-card p {
+
+    margin-top: 12px;
+
+    color: #89978e;
+
+    font-size: 11px;
+
+    line-height: 1.7;
+
+}
+
+
+/* =========================================================
+   FINAL QUOTE SECTION
+========================================================= */
+
+.final-quote {
+
+    position: relative;
+
+    min-height: 480px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background-image:
+
+        url("../images/farm-bg.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+}
+
+
+.quote-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        rgba(2,15,7,0.82);
+
+}
+
+
+.final-quote-content {
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+.final-quote-content > span {
+
+    color: #79d98a;
+
+    font-size: 9px;
+
+    letter-spacing: 3px;
+
+    font-weight: bold;
+
+}
+
+
+.final-quote-content h2 {
+
+    margin-top: 20px;
+
+    font-size:
+        clamp(
+            42px,
+            6vw,
+            75px
+        );
+
+    line-height: 1.05;
+
+    letter-spacing: -2px;
+
+}
+
+
+.final-quote-content em {
+
+    color: #79d98a;
+
+    font-style: normal;
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+
+    padding:
+        50px 8%;
+
+    background:
+        #030b05;
+
+    text-align: center;
+
+}
+
+
+.footer-logo {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    font-size: 17px;
+
+}
+
+
+.footer-logo span {
+
+    font-size: 22px;
+
+}
+
+
+footer > p {
+
+    margin-top: 13px;
+
+    color: #7f8d83;
+
+    font-size: 11px;
+
+}
+
+
+.footer-line {
+
+    width: 100%;
+
+    max-width: 700px;
+
+    height: 1px;
+
+    margin:
+        30px auto;
+
+    background:
+        rgba(255,255,255,0.08);
+
+}
+
+
+footer .copyright {
+
+    color: #566259;
+
+    font-size: 9px;
+
+}
+
+
+/* =========================================================
+   TABLET RESPONSIVE DESIGN
+========================================================= */
+
+@media (max-width: 900px) {
+
+
+    nav {
+
+        gap: 18px;
+
+    }
+
+
+    .quote-grid {
+
+        grid-template-columns:
+            1fr;
+
+        max-width: 600px;
+
+    }
+
+
+    .feature-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE RESPONSIVE DESIGN
+========================================================= */
+
+@media (max-width: 650px) {
+
+
+    .navbar {
+
+        height: 70px;
+
+        padding:
+            0 5%;
+
+    }
+
+
+    nav {
+
+        display: none;
+
+    }
+
+
+    .logo-text small {
+
+        display: none;
+
+    }
+
+
+    .logo-text h2 {
+
+        font-size: 16px;
+
+    }
+
+
+    .login-btn {
+
+        padding:
+            8px 13px;
+
+        font-size: 10px;
+
+    }
+
+
+    .hero {
+
+        padding:
+            120px 7% 70px;
+
+        min-height:
+            100vh;
+
+    }
+
+
+    .hero h1 {
+
+        font-size:
+            45px;
+
+        letter-spacing:
+            -1.5px;
+
+    }
+
+
+    .hero-description {
+
+        font-size:
+            13px;
+
+    }
+
+
+    .hero-buttons {
+
+        flex-direction:
+            column;
+
+        align-items:
+            flex-start;
+
+    }
+
+
+    .primary-btn,
+    .secondary-btn {
+
+        width:
+            190px;
+
+    }
+
+
+    .scroll-indicator {
+
+        display:
+            none;
+
+    }
+
+
+    .about-section,
+    .features-section {
+
+        padding:
+            80px 6%;
+
+    }
+
+
+    .about-section h2,
+    .features-section h2 {
+
+        font-size:
+            38px;
+
+    }
+
+
+    .feature-grid {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .final-quote {
+
+        min-height:
+            400px;
+
+    }
+
+
+    .final-quote-content h2 {
+
+        font-size:
+            43px;
+
+    }
+
+}

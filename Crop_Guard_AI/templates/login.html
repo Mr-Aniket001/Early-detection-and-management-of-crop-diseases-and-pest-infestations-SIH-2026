@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- =====================================================
+         BASIC SETTINGS
+    ====================================================== -->
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        CropGuard AI | Initialize
+    </title>
+
+
+    <!-- =====================================================
+         LOGIN PAGE CSS
+    ====================================================== -->
+
+<link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     BACKGROUND
+====================================================== -->
+
+<div class="background"></div>
+
+
+
+<!-- =====================================================
+     TOP NAVIGATION
+====================================================== -->
+
+<header class="top-bar">
+
+    <!-- CropGuard Logo -->
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            🌾
+        </div>
+
+        <div>
+
+            <h2>
+                CropGuard <span>AI</span>
+            </h2>
+
+            <small>
+                CROP HEALTH INTELLIGENCE
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <!-- Back to Home -->
+
+    <a
+        href="{{ url_for('home') }}"
+        class="back-btn"
+    >
+        ← Back to Home
+    </a>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN START SCREEN
+====================================================== -->
+
+<main
+    class="start-container"
+    id="startContainer"
+>
+
+
+    <!-- START SYMBOL -->
+
+    <div
+        class="start-symbol"
+        id="startSymbol"
+    >
+
+        <div class="outer-ring"></div>
+
+        <div class="inner-circle">
+            🌱
+        </div>
+
+    </div>
+
+
+
+    <!-- TITLE -->
+
+    <div class="start-label">
+        SYSTEM INITIALIZATION
+    </div>
+
+
+    <h1>
+
+        Start Your
+        <span>Crop Health Journey</span>
+
+    </h1>
+
+
+    <p class="start-description">
+
+        Initialize CropGuard AI to access intelligent
+        crop disease detection, weather-based risk
+        forecasting, pest surveillance and expert
+        agricultural guidance.
+
+    </p>
+
+
+
+    <!-- START BUTTON -->
+
+    <button
+        type="button"
+        class="start-btn"
+        onclick="startSystem()"
+    >
+
+        <span>
+            START SYSTEM
+        </span>
+
+        <strong>
+            →
+        </strong>
+
+    </button>
+
+
+
+    <!-- STATUS -->
+
+    <div
+        class="system-status"
+        id="systemStatus"
+    >
+
+        <span class="status-dot"></span>
+
+        System Ready
+
+    </div>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     INITIALIZATION / LOADING SCREEN
+====================================================== -->
+
+<div
+    class="loading-screen"
+    id="loadingScreen"
+    style="display: none;"
+>
+
+
+    <div class="loading-content">
+
+
+        <!-- Loading icon -->
+
+        <div class="loading-icon">
+            🌾
+        </div>
+
+
+        <h2>
+
+            Initializing
+            <span>CropGuard AI</span>
+
+        </h2>
+
+
+        <!-- Progress bar -->
+
+        <div class="progress-container">
+
+            <div
+                class="progress-bar"
+                id="progressBar"
+            ></div>
+
+        </div>
+
+
+        <!-- Loading text -->
+
+        <p id="loadingText">
+            Preparing crop intelligence...
+        </p>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =====================================================
+     ROLE SELECTION
+====================================================== -->
+
+<section
+    class="role-section"
+    id="roleSection"
+    style="display: none;"
+>
+
+
+    <div class="role-content">
+
+
+        <!-- Small heading -->
+
+        <div class="role-label">
+            SYSTEM INITIALIZED
+        </div>
+
+
+        <h2>
+
+            Choose Your
+            <span>Access</span>
+
+        </h2>
+
+
+        <p>
+            Select how you want to use
+            CropGuard AI.
+        </p>
+
+
+
+        <!-- =================================================
+             ROLE CARDS
+        ================================================== -->
+
+        <div class="role-grid">
+
+
+            <!-- =================================================
+                 FARMER
+            ================================================== -->
+
+            <div
+                class="role-card"
+                onclick="selectRole('farmer')"
+                tabindex="0"
+                role="button"
+            >
+
+                <div class="role-icon">
+                    👨‍🌾
+                </div>
+
+
+                <h3>
+                    Farmer
+                </h3>
+
+
+                <p>
+
+                    Scan crops, check risks,
+                    receive advisories and
+                    monitor crop health.
+
+                </p>
+
+
+                <button
+                    type="button"
+                    onclick="event.stopPropagation(); selectRole('farmer')"
+                >
+                    Continue →
+                </button>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 AGRICULTURE EXPERT
+            ================================================== -->
+
+            <div
+                class="role-card"
+                onclick="selectRole('expert')"
+                tabindex="0"
+                role="button"
+            >
+
+                <div class="role-icon">
+                    👨‍🔬
+                </div>
+
+
+                <h3>
+                    Agriculture Expert
+                </h3>
+
+
+                <p>
+
+                    Validate AI predictions,
+                    review cases and provide
+                    expert diagnosis.
+
+                </p>
+
+
+                <button
+                    type="button"
+                    onclick="event.stopPropagation(); selectRole('expert')"
+                >
+                    Continue →
+                </button>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 AGRICULTURE OFFICER
+            ================================================== -->
+
+            <div
+                class="role-card"
+                onclick="selectRole('officer')"
+                tabindex="0"
+                role="button"
+            >
+
+                <div class="role-icon">
+                    🏛️
+                </div>
+
+
+                <h3>
+                    Agriculture Officer
+                </h3>
+
+
+                <p>
+
+                    Monitor hotspots,
+                    disease trends and
+                    regional crop health.
+
+                </p>
+
+
+                <button
+                    type="button"
+                    onclick="event.stopPropagation(); selectRole('officer')"
+                >
+                    Continue →
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             RESTART BUTTON
+        ================================================== -->
+
+        <button
+            type="button"
+            class="restart-btn"
+            onclick="restartSystem()"
+        >
+
+            ↻ Restart
+
+        </button>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script>
+
+    /* =====================================================
+       START SYSTEM
+    ====================================================== */
+
+    function startSystem() {
+
+        const startContainer =
+            document.getElementById("startContainer");
+
+        const loadingScreen =
+            document.getElementById("loadingScreen");
+
+        const progressBar =
+            document.getElementById("progressBar");
+
+        const loadingText =
+            document.getElementById("loadingText");
+
+
+        /*
+         * Hide the start screen
+         */
+
+        startContainer.style.display = "none";
+
+
+        /*
+         * Show loading screen
+         */
+
+        loadingScreen.style.display = "flex";
+
+
+        /*
+         * Reset progress
+         */
+
+        progressBar.style.width = "0%";
+
+
+        /*
+         * Loading messages
+         */
+
+        const messages = [
+
+            "Preparing crop intelligence...",
+
+            "Loading disease detection engine...",
+
+            "Connecting weather intelligence...",
+
+            "Preparing pest surveillance...",
+
+            "Loading expert validation system...",
+
+            "CropGuard AI is ready."
+
+        ];
+
+
+        let progress = 0;
+        let messageIndex = 0;
+
+
+        const loadingInterval = setInterval(function () {
+
+            progress += 20;
+
+            progressBar.style.width =
+                progress + "%";
+
+
+            if (messageIndex < messages.length) {
+
+                loadingText.textContent =
+                    messages[messageIndex];
+
+                messageIndex++;
+
+            }
+
+
+            /*
+             * Loading complete
+             */
+
+            if (progress >= 100) {
+
+                clearInterval(loadingInterval);
+
+
+                setTimeout(function () {
+
+                    loadingScreen.style.display =
+                        "none";
+
+                    document.getElementById(
+                        "roleSection"
+                    ).style.display = "flex";
+
+                }, 500);
+
+            }
+
+        }, 500);
+
+    }
+
+
+
+    /* =====================================================
+       ROLE SELECTION
+    ====================================================== */
+
+    function selectRole(role) {
+
+
+        /*
+         * FARMER
+         */
+
+        if (role === "farmer") {
+
+            window.location.href =
+                "{{ url_for('farmer') }}";
+            
+            return;
+
+        }
+
+
+        /*
+         * AGRICULTURE EXPERT
+         */
+
+        if (role === "expert") {
+
+          window.location.href =
+                "{{ url_for('expert') }}";
+            return;
+
+        }
+
+
+        /*
+         * AGRICULTURE OFFICER
+         */
+
+        if (role === "officer") {
+
+            window.location.href =
+                "officer.html";
+
+            return;
+
+        }
+
+    }
+
+
+
+    /* =====================================================
+       RESTART SYSTEM
+    ====================================================== */
+
+    function restartSystem() {
+
+        /*
+         * Hide role selection
+         */
+
+        document.getElementById(
+            "roleSection"
+        ).style.display = "none";
+
+
+        /*
+         * Show start screen
+         */
+
+        document.getElementById(
+            "startContainer"
+        ).style.display = "flex";
+
+
+        /*
+         * Reset loading progress
+         */
+
+        document.getElementById(
+            "progressBar"
+        ).style.width = "0%";
+
+
+        /*
+         * Reset loading text
+         */
+
+        document.getElementById(
+            "loadingText"
+        ).textContent =
+            "Preparing crop intelligence...";
+
+    }
+
+
+
+    /* =====================================================
+       KEYBOARD ACCESSIBILITY
+    ====================================================== */
+
+    document
+        .querySelectorAll(".role-card")
+        .forEach(function (card) {
+
+            card.addEventListener(
+                "keydown",
+                function (event) {
+
+                    if (
+                        event.key === "Enter" ||
+                        event.key === " "
+                    ) {
+
+                        event.preventDefault();
+
+                        card.click();
+
+                    }
+
+                }
+            );
+
+        });
+
+</script>
+<div id="google_translate_element"
+     style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;">
+</div>
+<script src="{{ url_for('static', filename='translate.js') }}"></script>
+
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+</body>
+
+</html>

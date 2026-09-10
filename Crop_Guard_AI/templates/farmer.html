@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- =====================================================
+         BASIC SETTINGS
+    ====================================================== -->
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CropGuard AI | Farmer Scanner</title>
+
+
+    <!-- =====================================================
+         CSS FILE
+    ====================================================== -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='farmer.css') }}">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+     BACKGROUND EFFECT
+========================================================= -->
+
+    <div class="background-glow"></div>
+
+
+    <!-- =========================================================
+     NAVIGATION BAR
+========================================================= -->
+
+    <header class="navbar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🌾
+            </div>
+
+            <div>
+
+                <h2>
+                    CropGuard <span>AI</span>
+                </h2>
+
+                <small>
+                    CROP HEALTH INTELLIGENCE
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="nav-right">
+
+            <span class="system-online">
+                <span class="online-dot"></span>
+                SYSTEM ONLINE
+            </span>
+
+            <a href="{{ url_for('home') }}">
+                ← Home
+            </a>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================================
+     MAIN DASHBOARD
+========================================================= -->
+
+    <main class="dashboard">
+
+
+        <!-- =====================================================
+         PAGE HEADER
+    ====================================================== -->
+
+        <section class="page-header">
+
+            <div class="small-label">
+                FARMER CROP HEALTH CENTER
+            </div>
+
+            <h1>
+                Scan Your
+                <span>Crop</span>
+            </h1>
+
+            <p>
+                Upload a crop image and let CropGuard AI
+                analyze visible symptoms and crop-health risks.
+            </p>
+
+        </section>
+
+
+
+        <!-- =====================================================
+         MAIN GRID
+    ====================================================== -->
+
+        <section class="main-grid">
+
+
+            <!-- =================================================
+             LEFT SIDE
+        ================================================== -->
+
+            <div class="input-panel">
+
+
+                <!-- CROP NAME -->
+
+                <div class="input-box">
+
+                    <label>
+                        🌱 CROP NAME
+                    </label>
+
+                    <select id="cropName">
+
+                        <option value="">
+                            Select your crop
+                        </option>
+
+                        <option value="corn">
+                            Corn
+                        </option>
+
+                        <option value="rice">
+                            Rice
+                        </option>
+
+                        <option value="wheat">
+                            Wheat
+                        </option>
+
+                        <option value="sugarcane">
+                            Sugarcane
+                        </option>
+
+                        <option value="tomato">
+                            Tomato
+                        </option>
+
+                        <option value="cotton">
+                            Cotton
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- IMAGE UPLOAD -->
+
+                <div class="upload-box">
+
+                    <label>
+                        📷 CROP IMAGE
+                    </label>
+
+
+                    <input type="file" id="cropImage" accept="image/*" hidden>
+
+
+                    <label for="cropImage" class="upload-area" id="uploadArea">
+
+                        <div class="upload-icon">
+                            📸
+                        </div>
+
+                        <h3>
+                            Upload Crop Image
+                        </h3>
+
+                        <p>
+                            Click here to select a leaf or crop image
+                        </p>
+
+                        <span>
+                            JPG / PNG
+                        </span>
+
+                    </label>
+
+
+                    <!-- IMAGE PREVIEW -->
+
+                    <div class="image-preview" id="imagePreview">
+
+                        <img id="previewImage" src="" alt="Crop Preview">
+
+                        <button id="removeImage" type="button">
+                            ×
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- ANALYZE BUTTON -->
+
+                <button class="analyze-btn" id="analyzeBtn" type="button" onclick="showDemoResult()">
+
+                    <span>
+                        🔍 ANALYZE CROP
+                    </span>
+
+                    <strong>
+                        →
+                    </strong>
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+             RIGHT SIDE - AI SCANNER
+        ================================================== -->
+
+            <div class="scanner-panel">
+
+
+                <!-- SCANNER HEADER -->
+
+                <div class="scanner-header">
+
+                    <div>
+
+                        <span>
+                            AI VISION ENGINE
+                        </span>
+
+                        <h2>
+                            Crop Scanner
+                        </h2>
+
+                    </div>
+
+
+                    <div class="scanner-status">
+
+                        <span class="status-light" id="statusLight"></span>
+
+                        <span id="scannerStatus">
+                            READY
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                 SCAN CARD
+            ================================================== -->
+
+                <div class="scan-card" id="scanCard">
+
+
+                    <!-- CORNER DESIGN -->
+
+                    <div class="corner top-left"></div>
+
+                    <div class="corner top-right"></div>
+
+                    <div class="corner bottom-left"></div>
+
+                    <div class="corner bottom-right"></div>
+
+
+
+                    <!-- RADAR CIRCLES -->
+
+                    <div class="radar radar-one"></div>
+
+                    <div class="radar radar-two"></div>
+
+                    <div class="radar radar-three"></div>
+
+
+
+                    <!-- ROTATING RING -->
+
+                    <div class="scanner-ring">
+
+                        <div class="ring-dot"></div>
+
+                    </div>
+
+
+
+                    <!-- CENTER ICON -->
+
+                    <div class="scan-center" id="scanCenter">
+
+                        <div class="pulse-circle">
+
+                            <span>
+                                🌱
+                            </span>
+
+                        </div>
+
+                        <div class="center-dot"></div>
+
+                    </div>
+
+
+
+                    <!-- IMAGE WILL APPEAR HERE -->
+
+                    <img id="scannerImage" class="scanner-image" src="" alt="">
+
+
+
+                    <!-- SCAN LINE -->
+
+                    <div class="scan-line" id="scanLine">
+
+                        <div class="scan-line-glow"></div>
+
+                    </div>
+
+
+
+                    <!-- FLOATING PARTICLES -->
+
+                    <div class="particle p1"></div>
+                    <div class="particle p2"></div>
+                    <div class="particle p3"></div>
+                    <div class="particle p4"></div>
+                    <div class="particle p5"></div>
+                    <div class="particle p6"></div>
+
+
+
+                    <!-- SCAN TEXT -->
+
+                    <div class="scan-message" id="scanMessage">
+
+                        <strong>
+                            SYSTEM READY
+                        </strong>
+
+                        <span>
+                            Upload an image to begin
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- =================================================
+                 SCAN PROGRESS
+            ================================================== -->
+
+                <div class="scan-progress">
+
+                    <div class="progress-info">
+
+                        <span id="progressText">
+                            Waiting for scan
+                        </span>
+
+                        <strong id="progressPercent">
+                            0%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="progress-track">
+
+                        <div class="progress-fill" id="progressFill"></div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                 AI ACTIVITY
+            ================================================== -->
+
+                <div class="activity-box">
+
+                    <div class="activity-title">
+
+                        <span>
+                            AI ACTIVITY
+                        </span>
+
+                        <span class="live">
+                            ● LIVE
+                        </span>
+
+                    </div>
+
+
+                    <div class="activity-log" id="activityLog">
+
+                        <p>
+                            <span>›</span>
+                            Scanner initialized
+                        </p>
+
+                        <p>
+                            <span>›</span>
+                            Waiting for crop image...
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+         RESULT AREA
+    ====================================================== -->
+
+        <section class="result-section" id="resultSection">
+
+
+            <div class="result-header">
+
+                <div>
+
+                    <span>
+                        ANALYSIS RESULT
+                    </span>
+
+                    <h2>
+                        Crop Health Report
+                    </h2>
+
+                </div>
+
+                <!-- <div class="result-badge" id="resultBadge">
+                    <a href="{{ url_for('spreading') }}">ANALYZED</a>
+
+                </div> -->
+
+            </div>
+
+
+
+            <div class="result-grid">
+
+
+                <!-- DISEASE -->
+
+                <div class="result-card" id="result_card">
+
+                    <span>
+                        DETECTED CONDITION
+                    </span>
+
+                    <h3 id="diseaseResult">
+                        —
+                    </h3>
+
+                    <p id="diseaseDescription">
+                        Analysis result will appear here.
+                    </p>
+
+                </div>
+
+
+
+                <!-- CONFIDENCE -->
+
+                <div class="result-card" id="result_card">
+
+                    <span>
+                        AI CONFIDENCE
+                    </span>
+
+                    <h4 id="confidenceResult">
+                        —
+                    </h4>
+
+                    <div class="confidence-bar">
+
+                        <div id="confidenceFill"></div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RISK -->
+
+                <div class="result-card risk-card">
+
+                    <span>
+                        SPREAD RISK
+                    </span>
+
+                    <h3 class="risk-value" id="riskResult">
+                        ANALYSIS READY
+                    </h3>
+
+                    <p class="risk-copy">
+                        Estimated from the detected crop condition.
+                    </p>
+
+                    <a class="risk-action" id="analyzedLink" href="{{ url_for('spreading') }}">
+                        <span>VIEW SPREAD ANALYSIS</span>
+                        <strong aria-hidden="true">→</strong>
+                    </a>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- WARNING -->
+
+            <div class="warning-box" id="warningBox">
+
+                ⚠️
+
+                <div>
+
+                    <strong>
+                        Expert verification recommended
+                    </strong>
+
+                    <p>
+                        The AI could not confidently identify
+                        the condition. Consider uploading a
+                        clearer image or consulting an expert.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+    <script src="{{ url_for('static', filename='farmer.js') }}"></script>
+    <!-- 2. The hidden Google engine -->
+<div id="google_translate_element" style="display: none;"></div>
+
+<!-- 3. Google's API script -->
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!-- 4. Your custom persistent script -->
+<script src="{{ url_for('static', filename='translate.js') }}"></script>
+
+
+</body>
+
+</html>

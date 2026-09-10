@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- =====================================================
+         BASIC HTML SETTINGS
+    ====================================================== -->
+
+    <!-- Supports special characters -->
+    <meta charset="UTF-8">
+
+    <!-- Makes website responsive -->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <!-- Browser tab title -->
+    <title>
+        CropGuard AI | Smart Crop Health Intelligence
+    </title>
+
+
+    <!-- =====================================================
+         CONNECT HOME PAGE CSS
+    ====================================================== -->
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     NAVIGATION BAR
+========================================================= -->
+
+<header class="navbar">
+
+
+    <!-- LOGO -->
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🌾
+        </div>
+
+        <div class="logo-text">
+
+            <h2>
+                CropGuard <span>AI</span>
+            </h2>
+
+            <small>
+                CROP HEALTH INTELLIGENCE
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- NAVIGATION LINKS -->
+
+    <nav>
+
+        <a
+            href="{{ url_for('home') }}"
+            class="active"
+        >
+            Home
+        </a>
+
+        <a href="#about">
+            About
+        </a>
+
+        <a href="#features">
+            Features
+        </a>
+
+        <a href="#contact">
+            Contact
+        </a>
+
+    </nav><select id="language-selector" onchange="translateLanguage(this.value)">
+    <option value="en">English</option>
+    <option value="hi">हिन्दी (Hindi)</option>
+    <option value="bn">বাংলা (Bengali)</option>
+    <option value="te">తెలుగు (Telugu)</option>
+    <option value="mr">मराठी (Marathi)</option>
+    <option value="ta">தமிழ் (Tamil)</option>
+    <option value="gu">ગુજરાતી (Gujarati)</option>
+    <option value="kn">ಕನ್ನಡ (Kannada)</option>
+    <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+    <option value="ml">മലയാളം (Malayalam)</option>
+</select>
+
+
+
+    <!-- =====================================================
+         LOGIN BUTTON
+         
+         This opens USER LOGIN page.
+    ====================================================== -->
+
+  
+ <a class="login-btn" id="analyzedLink" href="{{ url_for('user_login') }}">Login</a>
+
+</header>
+
+
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
+
+<main>
+
+
+<!-- =========================================================
+     HERO SECTION
+========================================================= -->
+
+<section class="hero">
+
+
+    <!-- Dark overlay -->
+
+    <div class="hero-overlay"></div>
+
+
+    <!-- Hero content -->
+
+    <div class="hero-content">
+
+
+        <!-- Small heading -->
+
+        <div class="hero-label">
+
+            🌱 AI-POWERED AGRICULTURE
+
+        </div>
+
+
+
+        <!-- Main heading -->
+
+        <h1>
+
+            Protecting Crops
+
+            <br>
+
+            <span>
+                Before Damage Spreads.
+            </span>
+
+        </h1>
+
+
+
+        <!-- Description -->
+
+        <p class="hero-description">
+
+            CropGuard AI is an intelligent crop-health
+            platform that combines image-based disease
+            detection, weather intelligence, pest
+            surveillance and expert validation to provide
+            timely and actionable farm-level guidance.
+
+        </p>
+
+
+
+        <!-- =================================================
+             HERO BUTTONS
+        ================================================== -->
+
+        <div class="hero-buttons">
+
+
+            <!-- =================================================
+                 GET STARTED BUTTON
+                 
+                 IMPORTANT:
+                 This opens startsystem.html
+            ================================================== -->
+
+            <a
+                href="/login"
+                class="primary-btn"
+            >
+
+                Get Started
+
+                <span>
+                    →
+                </span>
+
+            </a>
+
+
+
+            <!-- Discover CropGuard -->
+
+            <a
+                href="#about"
+                class="secondary-btn"
+            >
+
+                Discover CropGuard
+
+            </a>
+
+
+        </div>
+
+
+
+        <!-- HERO QUOTE -->
+
+        <div class="hero-quote">
+
+            <div class="quote-line"></div>
+
+            <p>
+
+                "Healthy crops today,
+                <br>
+                secure harvests tomorrow."
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- SCROLL INDICATOR -->
+
+    <div class="scroll-indicator">
+
+        <span>
+            SCROLL TO EXPLORE
+        </span>
+
+        <div>
+            ↓
+        </div>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================================
+     ABOUT SECTION
+========================================================= -->
+
+<section
+    id="about"
+    class="about-section"
+>
+
+
+    <div class="section-label">
+
+        WHY CROPGUARD AI
+
+    </div>
+
+
+
+    <h2>
+
+        From Early Detection
+
+        <br>
+
+        <span>
+            to Smarter Decisions.
+        </span>
+
+    </h2>
+
+
+
+    <p class="about-description">
+
+        Farmers often discover crop diseases only after
+        visible damage has already spread. CropGuard AI
+        brings together field images, weather conditions,
+        pest information and expert knowledge to identify
+        risks earlier and support better agricultural
+        decisions.
+
+    </p>
+
+
+
+    <!-- QUOTE CARDS -->
+
+    <div class="quote-grid">
+
+
+        <!-- CARD 1 -->
+
+        <div class="quote-card">
+
+            <div class="quote-icon">
+                ❝
+            </div>
+
+            <p>
+
+                "Early detection is the first
+                step toward preventing
+                large-scale crop loss."
+
+            </p>
+
+            <span>
+                — CropGuard Principle
+            </span>
+
+        </div>
+
+
+
+        <!-- CARD 2 -->
+
+        <div class="quote-card">
+
+            <div class="quote-icon">
+                🌱
+            </div>
+
+            <p>
+
+                "Technology should help
+                farmers make better
+                decisions, not replace them."
+
+            </p>
+
+            <span>
+                — Farmer First Approach
+            </span>
+
+        </div>
+
+
+
+        <!-- CARD 3 -->
+
+        <div class="quote-card">
+
+            <div class="quote-icon">
+                🌾
+            </div>
+
+            <p>
+
+                "Better surveillance today
+                creates a stronger harvest
+                tomorrow."
+
+            </p>
+
+            <span>
+                — Crop Health Vision
+            </span>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================================
+     FEATURES SECTION
+========================================================= -->
+
+<section
+    id="features"
+    class="features-section"
+>
+
+
+    <div class="section-label">
+
+        INTELLIGENCE AT EVERY STAGE
+
+    </div>
+
+
+
+    <h2>
+
+        One Platform.
+
+        <span>
+            Complete Crop Health.
+        </span>
+
+    </h2>
+
+
+
+    <!-- FEATURE GRID -->
+
+    <div class="feature-grid">
+
+
+        <!-- FEATURE 1 -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                📷
+            </div>
+
+            <h3>
+                AI Disease Detection
+            </h3>
+
+            <p>
+
+                Identify possible crop diseases
+                from field images.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- FEATURE 2 -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🌦️
+            </div>
+
+            <h3>
+                Risk Forecasting
+            </h3>
+
+            <p>
+
+                Combine weather and crop
+                conditions to identify risks.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- FEATURE 3 -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                🗺️
+            </div>
+
+            <h3>
+                Hotspot Mapping
+            </h3>
+
+            <p>
+
+                Visualize disease and pest
+                hotspots geographically.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- FEATURE 4 -->
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                👨‍🔬
+            </div>
+
+            <h3>
+                Expert Validation
+            </h3>
+
+            <p>
+
+                Connect AI predictions with
+                agricultural experts.
+
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================================
+     FINAL VISION
+========================================================= -->
+
+<section class="final-quote">
+
+
+    <div class="quote-overlay"></div>
+
+
+    <div class="final-quote-content">
+
+        <span>
+            OUR VISION
+        </span>
+
+        <h2>
+
+            "Detect Early.
+
+            <br>
+
+            Act Smart.
+
+            <br>
+
+            <em>
+                Grow Better.
+            </em>"
+
+        </h2>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer id="contact">
+
+
+    <div class="footer-logo">
+
+        <span>
+            🌾
+        </span>
+
+        <strong>
+            CropGuard AI
+        </strong>
+
+    </div>
+
+
+
+    <p>
+
+        Intelligent Crop Health Monitoring &
+        Decision Support System
+
+    </p>
+
+
+
+    <div class="footer-line"></div>
+
+
+
+    <p class="copyright">
+
+        © 2026 CropGuard AI.
+        SIH Project Prototype.
+
+    </p>
+
+
+</footer>
+
+
+</main>
+
+<div id="google_translate_element" style="display: none;"></div>
+
+<!-- 3. Google's API script -->
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!-- 4. Your custom persistent script -->
+<script src="{{ url_for('static', filename='translate.js') }}"></script>
+
+
+
+</body>
+
+</html>
