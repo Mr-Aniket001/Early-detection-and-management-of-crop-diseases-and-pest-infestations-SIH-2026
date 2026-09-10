@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CropGuard AI - Agriculture Expert</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='expert.css') }}">
+
+</head>
+
+<body>
+
+
+<!-- =====================================
+     NAVBAR
+===================================== -->
+
+<header class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🌾
+        </div>
+
+        <div class="logo-text">
+
+            <h2>
+                CropGuard <span>AI</span>
+            </h2>
+
+            <small>
+                AGRICULTURE EXPERT
+            </small>
+
+        </div>
+
+    </div>
+
+
+    <div class="expert-profile">
+
+        <div class="expert-name">
+
+            <span>👨‍🌾</span>
+
+            <div>
+                <b>Agriculture Expert</b>
+                <small>Expert Dashboard</small>
+            </div>
+
+        </div>
+
+
+        <button
+            class="logout-btn"
+            onclick="logout()">
+
+            Logout
+
+        </button>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================
+     MAIN
+===================================== -->
+
+<main>
+
+
+    <!-- =====================================
+         WELCOME
+    ===================================== -->
+
+    <section class="welcome">
+
+        <div class="label">
+            EXPERT WORKSPACE
+        </div>
+
+        <h1>
+            Welcome, Agriculture Expert 👋
+        </h1>
+
+        <p class="welcome-text">
+
+            Review the AI-identified crop disease
+            and provide your professional
+            agricultural recommendations.
+
+        </p>
+
+    </section>
+
+
+
+    <!-- =====================================
+         AI CASE
+    ===================================== -->
+
+    <section class="case-section">
+
+        <div class="section-heading">
+
+            <div>
+
+                <div class="label">
+                    AI IDENTIFIED CASE
+                </div>
+
+                <h2>
+                    Crop Disease Requiring Expert Attention
+                </h2>
+
+            </div>
+
+
+            <span class="pending-status">
+                ● Pending Expert Action
+            </span>
+
+        </div>
+
+
+
+        <div class="case-card">
+
+
+            <!-- LEFT -->
+
+            <div class="crop-details">
+
+                <div class="crop-image">
+                    🍅
+                </div>
+
+
+                <div class="crop-text">
+
+                    <span class="case-id">
+                        Case ID: CG1024
+                    </span>
+
+                    <h2>
+                        Tomato Crop
+                    </h2>
+
+                    <p>
+                        <b>AI Identified Disease:</b>
+                        Early Blight
+                    </p>
+
+                    <p>
+                        <b>AI Confidence:</b>
+                        <span class="confidence">
+                            92%
+                        </span>
+                    </p>
+
+                    <p>
+                        <b>Risk Level:</b>
+                        <span class="high-risk">
+                            HIGH
+                        </span>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- RIGHT -->
+
+            <div class="field-info">
+
+                <h3>
+                    🌱 Field Information
+                </h3>
+
+
+                <div class="info-row">
+
+                    <span>
+                        Location
+                    </span>
+
+                    <strong>
+                        West Bengal
+                    </strong>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <span>
+                        Weather
+                    </span>
+
+                    <strong>
+                        High humidity
+                    </strong>
+
+                </div>
+
+
+                <div class="info-row">
+
+                    <span>
+                        Symptoms
+                    </span>
+
+                    <strong>
+                        Brown spots on leaves
+                    </strong>
+
+                </div>
+
+
+                <div class="ai-analysis">
+
+                    <b>
+                        🤖 AI Analysis
+                    </b>
+
+                    <p>
+
+                        The uploaded crop image shows
+                        symptoms commonly associated
+                        with Early Blight.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         EXPERT WORK
+    ===================================== -->
+
+    <section class="work-section">
+
+
+        <div class="section-heading">
+
+            <div>
+
+                <div class="label">
+                    EXPERT ANALYSIS
+                </div>
+
+                <h2>
+                    Expert Assessment & Recommendation
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================
+             SELECT OPTIONS
+        ===================================== -->
+
+        <div class="work-grid">
+
+
+            <!-- SEVERITY -->
+
+            <div class="work-card">
+
+                <div class="card-icon">
+                    🔬
+                </div>
+
+                <h3>
+                    Disease Severity
+                </h3>
+
+                <p>
+                    Evaluate the severity of
+                    the identified disease.
+                </p>
+
+
+                <label for="severity">
+                    Select Severity
+                </label>
+
+
+                <select id="severity">
+
+                    <option value="">
+                        Select severity
+                    </option>
+
+                    <option value="Low">
+                        Low
+                    </option>
+
+                    <option value="Moderate">
+                        Moderate
+                    </option>
+
+                    <option value="Severe">
+                        Severe
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- CROP CONDITION -->
+
+            <div class="work-card">
+
+                <div class="card-icon">
+                    🌱
+                </div>
+
+                <h3>
+                    Crop Condition
+                </h3>
+
+                <p>
+                    Evaluate the current condition
+                    of the affected crop.
+                </p>
+
+
+                <label for="cropCondition">
+                    Select Condition
+                </label>
+
+
+                <select id="cropCondition">
+
+                    <option value="">
+                        Select condition
+                    </option>
+
+                    <option value="Mostly Healthy">
+                        Mostly Healthy
+                    </option>
+
+                    <option value="Partially Affected">
+                        Partially Affected
+                    </option>
+
+                    <option value="Severely Affected">
+                        Severely Affected
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- SPREAD RISK -->
+
+            <div class="work-card">
+
+                <div class="card-icon">
+                    ⚠️
+                </div>
+
+                <h3>
+                    Disease Spread Risk
+                </h3>
+
+                <p>
+                    Estimate the possibility of
+                    further disease spread.
+                </p>
+
+
+                <label for="spreadRisk">
+                    Select Risk
+                </label>
+
+
+                <select id="spreadRisk">
+
+                    <option value="">
+                        Select risk
+                    </option>
+
+                    <option value="Low">
+                        Low
+                    </option>
+
+                    <option value="Medium">
+                        Medium
+                    </option>
+
+                    <option value="High">
+                        High
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================
+             OBSERVATION
+        ===================================== -->
+
+        <div class="advice-card">
+
+            <div class="advice-heading">
+
+                <div class="advice-icon">
+                    👨‍🔬
+                </div>
+
+                <div>
+
+                    <h3>
+                        Expert Observation
+                    </h3>
+
+                    <p>
+                        Describe your professional
+                        observation of the crop disease.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <textarea
+                id="observation"
+                placeholder="Write your expert observation here..."></textarea>
+
+        </div>
+
+
+
+        <!-- =====================================
+             MANAGEMENT
+        ===================================== -->
+
+        <div class="advice-card">
+
+            <div class="advice-heading">
+
+                <div class="advice-icon">
+                    🌾
+                </div>
+
+                <div>
+
+                    <h3>
+                        Crop Management Advice
+                    </h3>
+
+                    <p>
+                        Provide practical recommendations
+                        for managing this crop disease.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <textarea
+                id="management"
+                placeholder="Write crop management advice here..."></textarea>
+
+        </div>
+
+
+
+        <!-- =====================================
+             FOLLOW UP
+        ===================================== -->
+
+        <div class="advice-card">
+
+            <div class="advice-heading">
+
+                <div class="advice-icon">
+                    📅
+                </div>
+
+                <div>
+
+                    <h3>
+                        Follow-up Advice
+                    </h3>
+
+                    <p>
+                        Tell the farmer what should
+                        be done next.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <textarea
+                id="followup"
+                placeholder="Write follow-up instructions here..."></textarea>
+
+        </div>
+
+
+
+        <!-- =====================================
+             SUBMIT BUTTON
+        ===================================== -->
+
+        <div class="submit-area">
+
+            <button
+                class="submit-btn"
+                onclick="submitExpertReport()">
+
+                Submit Expert Report
+
+                <span>
+                    →
+                </span>
+
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+
+<!-- =================================================
+     INCOMPLETE FORM MODAL
+================================================= -->
+
+<div
+    class="custom-overlay"
+    id="warningModal">
+
+
+    <div class="custom-modal warning-modal">
+
+
+        <button
+            class="close-modal"
+            onclick="closeWarningModal()">
+
+            ×
+
+        </button>
+
+
+        <div class="warning-icon">
+            !
+        </div>
+
+
+        <h2>
+            Incomplete Report
+        </h2>
+
+
+        <p>
+            Please complete all required expert
+            analysis fields before submitting.
+        </p>
+
+
+        <div
+            class="missing-fields"
+            id="missingFields">
+        </div>
+
+
+        <button
+            class="modal-ok-btn"
+            onclick="closeWarningModal()">
+
+            Okay
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =================================================
+     CONFIRMATION MODAL
+================================================= -->
+
+<div
+    class="custom-overlay"
+    id="confirmModal">
+
+
+    <div class="custom-modal confirm-modal">
+
+
+        <button
+            class="close-modal"
+            onclick="closeConfirmModal()">
+
+            ×
+
+        </button>
+
+
+        <div class="confirm-icon">
+            ?
+        </div>
+
+
+        <h2>
+            Confirm Expert Report
+        </h2>
+
+
+        <p>
+
+            Are you sure you want to submit
+            this expert analysis and recommendation?
+
+        </p>
+
+
+        <div class="confirm-case">
+
+            <strong>
+                Case ID: CG1024
+            </strong>
+
+            <span>
+                Tomato Crop • Early Blight
+            </span>
+
+        </div>
+
+
+        <div class="confirm-buttons">
+
+
+            <button
+                class="cancel-btn"
+                onclick="closeConfirmModal()">
+
+                Cancel
+
+            </button>
+
+
+            <button
+                class="confirm-submit-btn"
+                onclick="confirmSubmission()">
+
+                Confirm & Submit
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =================================================
+     SUCCESS MODAL
+================================================= -->
+
+<div
+    class="success-overlay"
+    id="successModal">
+
+
+    <div class="success-modal">
+
+
+        <!-- CHECK -->
+
+        <div class="success-icon">
+
+            <span>
+                ✓
+            </span>
+
+        </div>
+
+
+        <!-- TITLE -->
+
+        <h2>
+
+            Expert Report Submitted
+
+            <br>
+
+            Successfully!
+
+        </h2>
+
+
+        <!-- LINE -->
+
+        <div class="success-line">
+
+            <span>
+                🌿
+            </span>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <p class="success-message">
+
+            Your expert analysis and recommendations
+            have been submitted successfully.
+
+        </p>
+
+
+        <!-- CASE -->
+
+        <div class="submitted-case">
+
+
+            <div class="case-icon">
+                📋
+            </div>
+
+
+            <div class="submitted-details">
+
+                <p>
+
+                    Case ID:
+
+                    <strong>
+                        CG1024
+                    </strong>
+
+                </p>
+
+                <span>
+                    Tomato Crop • Early Blight
+                </span>
+
+            </div>
+
+
+            <div class="submitted-badge">
+
+                ✓ Submitted
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =================================================
+     LOGOUT CONFIRMATION MODAL
+================================================= -->
+
+<div
+    class="custom-overlay"
+    id="logoutModal">
+
+
+    <div class="custom-modal logout-modal">
+
+
+        <button
+            class="close-modal"
+            onclick="closeLogoutModal()">
+
+            ×
+
+        </button>
+
+
+        <div class="logout-icon">
+            ❓
+        </div>
+
+
+        <h2>
+            Logout Confirmation
+        </h2>
+
+
+        <p>
+            Are you sure you want to logout?
+        </p>
+
+
+        <div class="logout-buttons">
+
+
+            <button
+                class="logout-cancel-btn"
+                onclick="closeLogoutModal()">
+
+                Cancel
+
+            </button>
+
+
+            <button
+                class="logout-confirm-btn"
+                onclick="confirmLogout()">
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script src="{{ url_for('static', filename='expert.js') }}"></script>
+<div id="google_translate_element" style="display: none;"></div>
+
+<!-- 3. Google's API script -->
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!-- 4. Your custom persistent script -->
+<script src="{{ url_for('static', filename='translate.js') }}"></script>
+
+</body>
+
+</html>

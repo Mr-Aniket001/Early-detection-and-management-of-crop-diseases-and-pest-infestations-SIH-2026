@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CropGuard AI | Crop Health Response</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='spreading.css') }}">
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="logo">
+        <div class="logo-symbol">🌾</div>
+        <div>
+            <h2>CropGuard <span>AI</span></h2>
+            <small>CROP HEALTH INTELLIGENCE</small>
+        </div>
+    </div>
+
+    <div class="nav-right">
+        <div class="system-status">
+            <span class="online-dot"></span>
+            SYSTEM ONLINE
+        </div>
+        <a href="{{ url_for('home') }}">← Home</a>
+    </div>
+</header>
+
+<main class="main-container">
+
+    <!-- =====================================================
+         PAGE HEADER
+    ====================================================== -->
+
+    <section class="page-header">
+
+        <div class="page-label">
+            CROP HEALTH RESPONSE ENGINE
+        </div>
+
+        <h1>
+            Disease Risk &
+            <span>Response Analysis</span>
+        </h1>
+
+        <p>
+            CropGuard AI combines your field location,
+            current weather conditions and detected disease
+            information to estimate the possibility of disease
+            spread and provide appropriate guidance.
+        </p>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         DETECTED DISEASE SUMMARY
+    ====================================================== -->
+
+    <section class="disease-summary">
+
+        <div>
+
+            <span class="summary-label">
+                DETECTED CROP
+            </span>
+
+            <h2 id="cropName">
+                Tomat
+            </h2>
+
+        </div>
+
+
+        <div>
+
+            <span class="summary-label">
+                DETECTED CONDITION
+            </span>
+
+            <h2 id="diseaseName">
+                Late Blight
+            </h2>
+
+        </div>
+
+
+        <div>
+
+            <span class="summary-label">
+                AI CONFIDENCE
+            </span>
+
+            <h2 id="confidence">
+                94%
+            </h2>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         SECTION 1
+         SPREADING RISK ANALYSIS
+    ========================================================= -->
+
+    <section class="risk-section">
+
+
+        <div class="info-card outbreak-input-card">
+
+            <div class="card-top">
+                <span>🧪 FIELD INPUTS</span>
+                <span class="live-tag">REQUIRED</span>
+            </div>
+
+            <p class="input-intro">
+                Add your latest soil readings to sharpen the outbreak estimate.
+            </p>
+
+            <div class="outbreak-input-grid">
+                <label class="field-group" for="nitrogen">
+                    <span>NITROGEN <small>N</small></span>
+                    <span class="input-wrap">
+                        <input id="nitrogen" type="number" step="any" min="0" inputmode="decimal" placeholder="e.g. 40" required>
+                        <em>mg/kg</em>
+                    </span>
+                </label>
+                <label class="field-group" for="phosphorus">
+                    <span>PHOSPHORUS <small>P</small></span>
+                    <span class="input-wrap">
+                        <input id="phosphorus" type="number" step="any" min="0" inputmode="decimal" placeholder="e.g. 20" required>
+                        <em>mg/kg</em>
+                    </span>
+                </label>
+                <label class="field-group" for="potassium">
+                    <span>POTASSIUM <small>K</small></span>
+                    <span class="input-wrap">
+                        <input id="potassium" type="number" step="any" min="0" inputmode="decimal" placeholder="e.g. 35" required>
+                        <em>mg/kg</em>
+                    </span>
+                </label>
+                <label class="field-group" for="ph">
+                    <span>SOIL pH <small>0-14</small></span>
+                    <span class="input-wrap">
+                        <input id="ph" type="number" min="0" max="14" step="any" inputmode="decimal" placeholder="e.g. 6.5" required>
+                        <em>pH</em>
+                    </span>
+                </label>
+            </div>
+
+        </div>
+
+
+        <!-- SECTION TITLE -->
+
+        <div class="section-heading">
+
+            <div class="section-number">
+                01
+            </div>
+
+            <div>
+
+                <span>
+                    ENVIRONMENTAL INTELLIGENCE
+                </span>
+
+                <h2>
+                    Disease Spreading Risk
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             WEATHER + LOCATION GRID
+        ====================================================== -->
+
+        <div class="environment-grid">
+
+
+            <!-- =================================================
+                 LOCATION BOX
+            ================================================== -->
+
+            <div class="info-card location-card">
+
+                <div class="card-top">
+
+                    <span>
+                        📍 FIELD LOCATION
+                    </span>
+
+                    <span class="live-tag">
+                        GPS
+                    </span>
+
+                </div>
+
+
+                <div class="location-display" id="locationDisplay">
+                    Location not detected
+                </div>
+
+
+                <button
+                    class="outline-button"
+                    onclick="detectLocation()"
+                >
+
+                    📍 Detect My Location
+
+                </button>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 WEATHER BOX
+            ================================================== -->
+
+            <div class="info-card weather-card">
+
+                <div class="card-top">
+
+                    <span>
+                        🌦 CURRENT WEATHER
+                    </span>
+
+                    <span
+                        class="live-tag"
+                        id="weatherStatus"
+                    >
+                        WAITING
+                    </span>
+
+                </div>
+
+
+                <div class="weather-main">
+
+                    <div
+                        class="weather-icon"
+                        id="weatherIcon"
+                    >
+                        🌦️
+                    </div>
+
+                    <div
+                        class="temperature"
+                        id="temperature"
+                        >
+                            --°C
+                        </div>
+
+                        <div
+                            class="weather-condition"
+                            id="weatherCondition"
+                        >
+                            Waiting for location
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- WEATHER DETAILS -->
+
+                <div class="weather-details">
+
+
+                    <div>
+
+                        <span>
+                            💧 Humidity
+                        </span>
+
+                        <strong id="humidity">
+                            --%
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            🌧 Rain
+                        </span>
+
+                        <strong id="rainfall">
+                            -- mm
+                        </strong>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>
+                            💨 Wind
+                        </span>
+
+                        <strong id="wind">
+                            -- km/h
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="calculate-risk-row">
+            <button class="outline-button input-submit" type="button" onclick="calculateOutbreakRisk()">
+                <span>CALCULATE OUTBREAK RISK</span>
+                <strong aria-hidden="true">→</strong>
+            </button>
+            <p class="input-status" id="outbreakInputStatus">Detect your location, then enter all four soil values.</p>
+        </div>
+
+
+        <!-- =====================================================
+             ANALYSIS SIMULATION
+        ====================================================== -->
+
+        <div class="analysis-card">
+
+
+            <div class="analysis-header">
+
+                <div>
+
+                    <span>
+                        AI ENVIRONMENTAL ANALYZER
+                    </span>
+
+                    <h3>
+                        Analysing Disease Spread Conditions
+                    </h3>
+
+                </div>
+
+
+                <div
+                    class="analysis-status"
+                    id="analysisStatus"
+                >
+
+                    READY
+
+                </div>
+
+            </div>
+
+
+
+<!-- =================================================
+     RED FLUID OCEAN WAVE SIMULATION
+================================================== -->
+
+<div class="wave-area">
+
+    <div class="grid-lines"></div>
+
+    <div class="fluid-wave wave-01"></div>
+    <div class="fluid-wave wave-02"></div>
+    <div class="fluid-wave wave-03"></div>
+    <div class="fluid-wave wave-04"></div>
+    <div class="fluid-wave wave-05"></div>
+    <div class="fluid-wave wave-06"></div>
+    <div class="fluid-wave wave-07"></div>
+    <div class="fluid-wave wave-08"></div>
+    <div class="fluid-wave wave-09"></div>
+    <div class="fluid-wave wave-10"></div>
+
+    <div class="fluid-core">
+        <div class="core-dot"></div>
+    </div>
+
+    <div class="wave-text">
+
+        <strong id="analysisText">
+            WAITING FOR ENVIRONMENT DATA
+        </strong>
+
+        <small>
+            Weather × Disease × Location
+        </small>
+
+    </div>
+
+</div>
+
+
+
+            <!-- =================================================
+                 RISK RESULT
+            ================================================== -->
+
+            <div class="risk-result">
+
+
+                <div>
+
+                    <span>
+                        ESTIMATED SPREAD RISK
+                    </span>
+
+                    <h2 id="riskLevel">
+                        --
+                    </h2>
+
+                </div>
+
+
+                <div class="risk-metrics">
+
+                    <div>
+                        <span>MODEL OUTPUT</span>
+                        <strong id="modelPrediction">--</strong>
+                    </div>
+
+                    <div>
+                        <span>RISK PROBABILITY</span>
+                        <strong id="riskProbability">--</strong>
+                    </div>
+
+                    <div>
+                        <span>RISK PERCENTAGE</span>
+                        <strong id="riskPercentage">--</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="risk-meter">
+
+                    <div class="meter-track">
+
+                        <div
+                            class="meter-fill"
+                            id="meterFill"
+                        ></div>
+
+                    </div>
+
+                    <div class="meter-labels">
+
+                        <span>
+                            LOW
+                        </span>
+
+                        <span>
+                            MEDIUM
+                        </span>
+
+                        <span>
+                            HIGH
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <p id="riskExplanation">
+
+                    Detect your location to begin
+                    environmental analysis.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         SECTION 2
+         ADVISORY
+    ========================================================= -->
+
+    <section class="advisory-section">
+
+
+        <div class="section-heading">
+
+            <div class="section-number">
+                02
+            </div>
+
+            <div>
+
+                <span>
+                    ACTIONABLE GUIDANCE
+                </span>
+
+                <h2>
+                    Smart Crop Advisory
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="advisory-container">
+
+
+            <!-- ADVISORY INTRO -->
+
+            <div class="advisory-intro">
+
+                <div class="advisory-icon">
+                    🌱
+                </div>
+
+                <div>
+
+                    <h3>
+                        Recommended Actions
+                    </h3>
+
+                    <p>
+                        Based on the detected disease
+                        and environmental conditions.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ADVICE CARDS -->
+
+            <div class="advice-grid">
+
+
+                <div class="advice-card">
+
+                    <div class="advice-icon">
+                        🔍
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Monitor Affected Plants
+                        </h4>
+
+                        <p>
+                            Inspect nearby plants regularly
+                            for similar symptoms and record
+                            any new affected areas.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="advice-card">
+
+                    <div class="advice-icon">
+                        🌿
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Remove Infected Material
+                        </h4>
+
+                        <p>
+                            Isolate or safely remove severely
+                            affected plant material to reduce
+                            the possibility of further spread.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="advice-card">
+
+                    <div class="advice-icon">
+                        💧
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Manage Field Moisture
+                        </h4>
+
+                        <p>
+                            Avoid unnecessary leaf wetness
+                            and maintain appropriate field
+                            drainage where possible.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="advice-card">
+
+                    <div class="advice-icon">
+                        🧪
+                    </div>
+
+                    <div>
+
+                        <h4>
+                            Use Inputs Responsibly
+                        </h4>
+
+                        <p>
+                            Use only approved agricultural
+                            inputs according to label directions
+                            and local expert recommendations.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+
+
+            <!-- ALERT -->
+
+            <div class="advisory-alert">
+
+                <span>
+                    ⚠️
+                </span>
+
+                <div>
+
+                    <strong>
+                        Important
+                    </strong>
+
+                    <p>
+                        AI-generated guidance is intended
+                        as decision support. Follow local
+                        agricultural recommendations and
+                        consult an expert when necessary.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================================================
+         SECTION 3
+         EXPERT CONSULTANCY
+    ========================================================= -->
+
+    <section class="expert-section">
+
+
+        <div class="section-heading">
+
+            <div class="section-number">
+                03
+            </div>
+
+            <div>
+
+                <span>
+                    HUMAN VALIDATION
+                </span>
+
+                <h2>
+                    Expert Consultancy
+                </h2>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="expert-card">
+
+
+            <div class="expert-visual">
+
+                <div class="expert-ring">
+
+                    👨‍🔬
+
+                </div>
+
+            </div>
+
+
+            <div class="expert-content">
+
+                <span class="expert-label">
+                    NEED A SECOND OPINION?
+                </span>
+
+                <h2>
+                    Connect With an
+                    <span>Agriculture Expert</span>
+                </h2>
+
+                <p>
+                    If the diagnosis is uncertain, the
+                    risk level is high, or you need
+                    professional guidance, submit your
+                    case to an agricultural expert for
+                    further validation.
+                </p>
+
+
+                <div class="expert-features">
+
+                    <span>
+                        ✓ AI report available
+                    </span>
+
+                    <span>
+                        ✓ Field information included
+                    </span>
+
+                    <span>
+                        ✓ Expert validation
+                    </span>
+
+                </div>
+
+
+                <a
+                    href="{{ url_for('expert') }}"
+                    class="expert-button"
+                >
+
+                    CONSULT AN EXPERT
+
+                    <span>
+                        →
+                    </span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <div class="footer-logo">
+
+            🌾
+
+            <strong>
+                CropGuard AI
+            </strong>
+
+        </div>
+
+        <p>
+            Intelligent Crop Health Monitoring &
+            Decision Support System
+        </p>
+
+        <small>
+            © 2026 CropGuard AI • SIH Prototype
+        </small>
+
+    </footer>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script src="{{ url_for('static', filename='spreading.js') }}"></script>
+<!-- 2. The hidden Google engine -->
+<div id="google_translate_element" style="display: none;"></div>
+
+<!-- 3. Google's API script -->
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!-- 4. Your custom persistent script -->
+<script src="{{ url_for('static', filename='translate.js') }}"></script>
+
+
+</body>
+
+</html>

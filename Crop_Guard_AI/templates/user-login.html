@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- =====================================================
+         BASIC SETTINGS
+    ====================================================== -->
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        CropGuard AI | Login
+    </title>
+
+
+    <!-- =====================================================
+         CONNECT LOGIN CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='user-login.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     BACKGROUND
+========================================================= -->
+
+<div class="login-background"></div>
+
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<header class="navbar">
+
+
+    <!-- LOGO -->
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🌾
+        </div>
+
+        <div class="logo-text">
+
+            <h2>
+                CropGuard <span>AI</span>
+            </h2>
+
+            <small>
+                CROP HEALTH INTELLIGENCE
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- BACK TO HOME -->
+
+    <a
+        href="{{ url_for('home') }}"
+        class="home-button"
+    >
+        ← Back to Home
+    </a>
+
+
+</header>
+
+
+
+<!-- =========================================================
+     LOGIN SECTION
+========================================================= -->
+
+<main class="login-section">
+
+
+    <!-- =====================================================
+         LOGIN CARD
+    ====================================================== -->
+
+    <div class="login-card">
+
+
+        <!-- LOGIN ICON -->
+
+        <div class="login-icon">
+            🌱
+        </div>
+
+
+        <!-- SMALL TITLE -->
+
+        <div class="login-label">
+            CROPGUARD AI
+        </div>
+
+
+        <!-- MAIN TITLE -->
+
+        <h1>
+
+            Welcome
+            <span>Back</span>
+
+        </h1>
+
+
+        <!-- DESCRIPTION -->
+
+        <p class="login-description">
+
+            Login to access your personalized
+            crop health dashboard.
+
+        </p>
+
+
+
+        <!-- =================================================
+             LOGIN FORM
+        ================================================== -->
+
+        <form id="loginForm">
+
+
+            <!-- =================================================
+                 NAME
+            ================================================== -->
+
+            <div class="form-group">
+
+                <label for="name">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Enter your full name"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- =================================================
+                 PHONE
+            ================================================== -->
+
+            <div class="form-group">
+
+                <label for="phone">
+                    Phone Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="Enter 10-digit phone number"
+                    maxlength="10"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- =================================================
+                 EMAIL
+            ================================================== -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ROLE
+            ================================================== -->
+
+            <div class="form-group">
+
+                <label for="role">
+                    Select Your Role
+                </label>
+
+                <select
+                    id="role"
+                    name="role"
+                    required
+                >
+
+                    <option value="">
+                        Select role
+                    </option>
+
+                    <option value="farmer">
+                        👨‍🌾 Farmer
+                    </option>
+
+                    <option value="expert">
+                        👨‍🔬 Agriculture Expert
+                    </option>
+
+                    <option value="officer">
+                        🏛️ Agriculture Officer
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 PASSWORD
+            ================================================== -->
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- =================================================
+                 LOGIN OPTIONS
+            ================================================== -->
+
+            <div class="login-options">
+
+
+                <label class="remember">
+
+                    <input
+                        type="checkbox"
+                        id="remember"
+                    >
+
+                    Remember me
+
+                </label>
+
+
+                <a href="#">
+                    Forgot Password?
+                </a>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 LOGIN BUTTON
+            ================================================== -->
+
+            <button
+                type="submit"
+                class="login-submit"
+            >
+
+                Login to CropGuard
+
+                <span>
+                    →
+                </span>
+
+            </button>
+
+
+        </form>
+
+
+
+        <!-- =================================================
+             CREATE ACCOUNT
+        ================================================== -->
+
+        <div class="register-text">
+
+            Don't have an account?
+
+            <a href="#">
+                Create Account
+            </a>
+
+        </div>
+
+
+        <!-- =================================================
+             LOGIN MESSAGE
+        ================================================== -->
+
+        <div
+            id="loginMessage"
+            class="login-message"
+        ></div>
+
+
+    </div>
+
+</main>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- =====================================================
+         BASIC PAGE SETTINGS
+    ====================================================== -->
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        CropGuard AI | Select Your Role
+    </title>
+
+
+    <!-- =====================================================
+         CONNECT CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='user-login.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     BACKGROUND IMAGE
+========================================================= -->
+
+<div class="system-background"></div>
+
+
+
+<!-- =========================================================
+     NAVIGATION BAR
+========================================================= -->
+
+<header class="navbar">
+
+
+    <!-- =====================================================
+         LOGO
+    ====================================================== -->
+
+    <div class="logo">
+
+
+        <div class="logo-icon">
+            🌾
+        </div>
+
+
+        <div class="logo-text">
+
+            <h2>
+                CropGuard <span>AI</span>
+            </h2>
+
+            <small>
+                CROP HEALTH INTELLIGENCE
+            </small>
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         HOME BUTTON
+    ====================================================== -->
+
+    <a
+        href="{{ url_for('home') }}"
+        class="home-button"
+    >
+
+        ← Home
+
+    </a>
+
+
+</header>
+
+
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
+
+<main class="system-container">
+
+
+    <!-- =====================================================
+         PAGE INTRODUCTION
+    ====================================================== -->
+
+    
+
+
+
+        <!-- =================================================
+             AGRICULTURE EXPERT CARD
+        ================================================== -->
+
+        
+
+
+        <!-- =================================================
+             AGRICULTURE OFFICER CARD
+        ================================================== -->
+    
+
+
+</main>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script src="{{ url_for('static', filename='user-login.js') }}"></script>
+
+<div id="google_translate_element" style="display: none;"></div>
+
+<!-- 3. Google's API script -->
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!-- 4. Your custom persistent script -->
+<script src="{{ url_for('static', filename='translate.js') }}"></script>
+
+
+
+
+</body>
+
+</html>
