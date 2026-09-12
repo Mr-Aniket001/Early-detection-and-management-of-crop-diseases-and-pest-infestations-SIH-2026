@@ -1,0 +1,9 @@
+Flask
+folium
+joblib
+numpy
+pandas
+Pillow
+requests
+scikit-learn
+tensorflow

@@ -704,6 +704,63 @@ body {
 
 
 /* =========================================================
+   FOLIUM RISK MAP
+========================================================= */
+
+.risk-map-panel {
+    min-height: 390px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    background: #07110d;
+}
+
+
+.risk-map-panel[hidden],
+.wave-area[hidden] {
+    display: none;
+}
+
+
+.map-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 25px;
+}
+
+
+.map-heading span {
+    color: #65756e;
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+
+.map-heading h3 {
+    margin-top: 7px;
+    color: #e9fff5;
+    font-size: 16px;
+}
+
+
+.map-heading small {
+    color: #809189;
+    font-size: 11px;
+    text-align: right;
+}
+
+
+.risk-map {
+    display: block;
+    width: 100%;
+    height: 330px;
+    border: 0;
+    background: #dfe8e2;
+}
+
+
+/* =========================================================
    RED FLUID OCEAN WAVE AREA
 ========================================================= */
 

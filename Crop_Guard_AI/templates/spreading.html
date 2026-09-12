@@ -370,14 +370,8 @@
 
 
 
-<!-- =================================================
-     RED FLUID OCEAN WAVE SIMULATION
-================================================== -->
-
-<div class="wave-area">
-
+<div class="wave-area" id="waveArea">
     <div class="grid-lines"></div>
-
     <div class="fluid-wave wave-01"></div>
     <div class="fluid-wave wave-02"></div>
     <div class="fluid-wave wave-03"></div>
@@ -394,17 +388,25 @@
     </div>
 
     <div class="wave-text">
-
-        <strong id="analysisText">
-            WAITING FOR ENVIRONMENT DATA
-        </strong>
-
-        <small>
-            Weather × Disease × Location
-        </small>
-
+        <strong id="analysisText">WAITING FOR ENVIRONMENT DATA</strong>
+        <small>Weather x Disease x Location</small>
     </div>
+</div>
 
+<div class="risk-map-panel" id="riskMapPanel" hidden>
+    <div class="map-heading">
+        <div>
+            <span>FIELD RISK MAP</span>
+            <h3 id="mapTitle">MODEL RESULT LOCATION</h3>
+        </div>
+        <small id="mapCoordinates">GPS coordinates will appear here</small>
+    </div>
+    <iframe
+        id="riskMap"
+        class="risk-map"
+        title="Field outbreak risk map"
+        loading="lazy"
+    ></iframe>
 </div>
 
 

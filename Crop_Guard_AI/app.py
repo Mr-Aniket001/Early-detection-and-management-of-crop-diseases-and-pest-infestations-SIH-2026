@@ -1,8 +1,10 @@
 import os
 from pathlib import Path
-
+import joblib
+import pandas as pd
+import folium
 import requests
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, Response
 from tensorflow import keras
 from PIL import Image
 import numpy as np
@@ -14,18 +16,22 @@ AGROMONITORING_API_KEY = os.getenv("AGROMONITORING_API_KEY", "fb0edf9a5875fa197a
 
 # Define model paths
 OUTBREAK_MODEL_PATH = Path(__file__).parent / "model_spread_detection" / "outbreak_risk_model.pkl"
+MODEL_DIR = Path(__file__).resolve().parent / "model"
 
 # LOAD MODEL
 models = {
-    "cotton": keras.models.load_model(r"model\cotton_cnn3.keras"),
-    "rice": keras.models.load_model(r"model\rice_cnn.keras"),
-    "sugarcane": keras.models.load_model(r"model\sugarcane_cnn_final.keras")
+    "cotton": keras.models.load_model(MODEL_DIR / "cotton_cnn3.keras"),
+    "rice": keras.models.load_model(MODEL_DIR / "rice_cnn.keras"),
+    "sugarcane": keras.models.load_model(MODEL_DIR / "sugarcane_cnn.keras"),
+    "wheat": keras.models.load_model(MODEL_DIR / "wheat_cnn.keras"),
+
 }
 
 class_names = {
     "cotton": ["Alternaria Leaf Spot", "Bacterial Blight", "Fusarium Wilt", "Healthy Leaf", "Verticillium Wilt"],
     "rice": ['Bacterialblight', 'Blast', 'Brownspot', 'Tungro'],
-    "sugarcane": ['BacterialBlights', 'Healthy', 'Mosaic', 'RedRot', 'Rust', 'Yellow']
+    "sugarcane": ['BacterialBlights', 'Healthy', 'Mosaic', 'RedRot', 'Rust', 'Yellow'],
+    "wheat":['BlackPoint', 'FusariumFootRot', 'HealthyLeaf', 'LeafBlight', 'WheatBlast']
 }
 
 print("Model loaded successfully!")
@@ -158,9 +164,6 @@ def outbreak_risk():
         return jsonify({"error": "Outbreak model file was not found"}), 503
 
     try:
-        import joblib
-        import pandas as pd
-
         model = joblib.load(OUTBREAK_MODEL_PATH)
         model_input = pd.DataFrame([{
             "N": numeric_values["nitrogen"],
@@ -175,7 +178,20 @@ def outbreak_risk():
         }])
         prediction = model.predict(model_input)[0]
         probabilities = getattr(model, "predict_proba", lambda _: None)(model_input)
-        probability = None if probabilities is None else float(max(probabilities[0]))
+        probability = None
+        if probabilities is not None:
+            class_probabilities = probabilities[0]
+            classes = list(getattr(model, "classes_", []))
+            high_risk_index = next(
+                (index for index, class_name in enumerate(classes)
+                 if str(class_name).strip().lower() in {"1", "high", "high risk"}),
+                None,
+            )
+            probability = float(
+                class_probabilities[high_risk_index]
+                if high_risk_index is not None
+                else max(class_probabilities)
+            )
     except ImportError:
         return jsonify({"error": "Install joblib, pandas, and scikit-learn to use the outbreak model"}), 503
     except Exception:
@@ -185,6 +201,57 @@ def outbreak_risk():
         "prediction": str(prediction),
         "probability": probability,
     })
+
+@app.route("/api/risk-map")
+def risk_map():
+    try:
+        latitude = float(request.args["lat"])
+        longitude = float(request.args["lon"])
+        if not -90 <= latitude <= 90 or not -180 <= longitude <= 180:
+            raise ValueError
+    except (KeyError, TypeError, ValueError):
+        return jsonify({"error": "Valid latitude and longitude are required"}), 400
+
+    crop = request.args.get("crop", "Unknown")
+    disease = request.args.get("disease", "Unknown")
+    risk = request.args.get("risk", "LOW").upper()
+    probability = request.args.get("probability", "--")
+    risk_colors = {"LOW": "green", "MEDIUM": "yellow", "HIGH": "white"}
+    color = risk_colors.get(risk, "green")
+
+    map_object = folium.Map(
+        location=[latitude, longitude],
+        zoom_start=12,
+        control_scale=True,
+        tiles="OpenStreetMap",
+    )
+    popup_html = f"""
+        <div style='font-family: Arial, sans-serif; min-width: 210px'>
+            <strong style='font-size: 16px'>CropGuard AI</strong><br>
+            <hr style='border: 0; border-top: 1px solid #ddd'>
+            <b>Plant:</b> {crop}<br>
+            <b>Disease:</b> {disease}<br>
+            <b>Outbreak probability:</b> {probability}<br>
+            <b>Risk:</b> {risk}
+        </div>
+    """
+    folium.Circle(
+        location=[latitude, longitude],
+        radius=1200,
+        color=color,
+        weight=3,
+        fill=True,
+        fill_color=color,
+        fill_opacity=0.3,
+        popup=folium.Popup(popup_html, max_width=300),
+        tooltip=f"{crop} | {risk} risk",
+    ).add_to(map_object)
+    folium.Marker(
+        [latitude, longitude],
+        tooltip="Your field location",
+    ).add_to(map_object)
+
+    return Response(map_object.get_root().render(), mimetype="text/html")
 
 @app.route("/predict", methods=["POST"])
 

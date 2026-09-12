@@ -3,6 +3,7 @@ const queryParams = new URLSearchParams(window.location.search);
 const cropName = queryParams.get("crop");
 const diseaseName = queryParams.get("disease");
 const confidence = queryParams.get("confidence");
+let latestCoordinates = null;
 
 if (cropName) {
     document.getElementById("cropName").textContent = cropName;
@@ -29,12 +30,37 @@ function detectLocation() {
     navigator.geolocation.getCurrentPosition(
         ({ coords }) => {
             locationDisplay.textContent = "GPS location detected";
+            latestCoordinates = {
+                latitude: coords.latitude,
+                longitude: coords.longitude,
+            };
             getWeatherData(coords.latitude, coords.longitude);
         },
         () => {
             locationDisplay.textContent = "Location permission denied.";
         }
     );
+}
+
+function updateRiskMap(risk = "LOW", probability = null) {
+    if (!latestCoordinates) {
+        return;
+    }
+
+    const params = new URLSearchParams({
+        lat: latestCoordinates.latitude,
+        lon: latestCoordinates.longitude,
+        crop: cropName || "Unknown",
+        disease: diseaseName || "Unknown",
+        risk,
+        probability: probability == null ? "--" : `${probability.toFixed(2)}%`,
+    });
+    document.getElementById("riskMap").src = `/api/risk-map?${params}`;
+    document.getElementById("mapCoordinates").textContent =
+        `${latestCoordinates.latitude.toFixed(5)}, ${latestCoordinates.longitude.toFixed(5)}`;
+    document.getElementById("waveArea").hidden = true;
+    document.getElementById("riskMapPanel").hidden = false;
+    document.getElementById("mapTitle").textContent = `${risk} RISK FIELD MAP`;
 }
 
 async function getWeatherData(latitude, longitude) {
@@ -109,22 +135,24 @@ async function calculateOutbreakRisk() {
         status.textContent = `Model result: ${result.prediction}`;
         const probability = result.probability == null ? null : result.probability * 100;
         const prediction = String(result.prediction);
-        
-        // Determine risk level based on prediction and map to visual percentage
-        let riskLevel, displayPercentage;
-        if (prediction === "1") {
+
+        // Use the model's spread probability to determine the three risk bands.
+        let riskLevel;
+        let displayPercentage = probability;
+        if (probability == null) {
+            riskLevel = prediction === "1" ? "HIGH" : "LOW";
+            displayPercentage = riskLevel === "HIGH" ? 85 : 15;
+        } else if (probability >= 70) {
             riskLevel = "HIGH";
-            displayPercentage = 85;  // Position HIGH end of gradient
-        } else if (prediction === "0") {
-            riskLevel = "LOW";
-            displayPercentage = 15;  // Position LOW end of gradient
-        } else {
+        } else if (probability >= 40) {
             riskLevel = "MEDIUM";
-            displayPercentage = 50;  // Position MEDIUM in gradient
+        } else {
+            riskLevel = "LOW";
         }
 
         document.getElementById("modelPrediction").textContent = prediction;
         document.getElementById("riskLevel").textContent = riskLevel;
+        updateRiskMap(riskLevel, probability);
         
         // Set meter-fill width to display correct risk level visually
         document.getElementById("meterFill").style.width = `${displayPercentage}%`;
